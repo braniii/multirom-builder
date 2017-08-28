@@ -1,0 +1,12 @@
+--- a/build/core/package_internal.mk
++++ b/build/core/package_internal.mk
+@@ -291,9 +291,9 @@ data_binding_res_out := $(data_binding_intermediates)/res
+ # Replace with the processed merged res dir.
+ LOCAL_RESOURCE_DIR := $(data_binding_res_out)
+ 
+-LOCAL_AAPT_FLAGS += --auto-add-overlay --extra-packages com.android.databinding.library
++LOCAL_AAPT_FLAGS += --extra-packages com.android.databinding.library
+ endif  # LOCAL_DATA_BINDING
+-
++LOCAL_AAPT_FLAGS += --auto-add-overlay
+ include $(BUILD_SYSTEM)/android_manifest.mk
