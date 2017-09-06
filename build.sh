@@ -1,7 +1,19 @@
 #!/bin/bash
 
-TARGETS="lineage_lux-user lineage_mido-user lineage_m8-user"
-
+TARGETS="
+	lineage-14.1_athene-user
+	lineage-14.1_bacon-user
+	lineage-14.1_cheeseburger-user
+	lineage-14.1_gemini-user
+	lineage-14.1_hammerhead-user
+	lineage-14.1_i9300-user
+	lineage-14.1_kenzo-user
+	lineage-14.1_klte-user
+	lineage-14.1_lux-user
+	lineage-14.1_oneplus3-user
+	lineage-14.1_osprey-user
+	lineage-14.1_titan-user
+	"
 OUTPUT_ROOT="/data/archive"
 BUILD_ROOT="/data/build"
 CCACHE_DIR="$BUILD_ROOT/ccache"
@@ -12,6 +24,8 @@ SCRIPT_PATH="$(dirname "$SCRIPT")"
 USE_CCACHE=1
 CCACHE_SIZE="120G"
 
+
+export CM_BUILDTYPE=NIGHTLY
 
 function setup_repo {
     ROM=$1
@@ -93,21 +107,41 @@ do
     do
 	if [[ $target == $rom* ]]
 	then
-            targettmp=$(awk -F '_' '{print $2}' <<< $target)
+	    targetfirst=$(awk -F '_' '{print $1}' <<< $target)
+	    # = lineage-14.1
+            targetlast=$(awk -F '_' '{print $2}' <<< $target)
 	    # = lux-user
-	    device=$(awk -F '-' '{print $1}' <<< $targettmp)
+
+	    romname=$(awk -F '-' '{print $1}' <<< $targetfirst)
+	    # = lineage
+	    version=$(awk -F '-' '{print $2}' <<< $targetfirst)
+	    # = 14.1
+	    device=$(awk -F '-' '{print $1}' <<< $targetlast)
 	    # = lux
-	    buildtype=$(awk -F '-' '{print $2}' <<< $targettmp)
+	    buildtype=$(awk -F '-' '{print $2}' <<< $targetlast)
 	    # = user
+
+            buildcombo=$romname"_"$targetlast
+	    # = lineage_lux-user
+
 	    dstpath=$OUTPUT_ROOT/$rom/$device/
-	    brunch $target
+	    timestamp=$(date +'%Y%m%d_%H%M')
+
+	    mkdir -p $OUTPUT_ROOT/logs/
+	    logpath=$OUTPUT_ROOT/logs/$rom-$device-$timestamp.log
+
+	    brunch $buildcombo 1>>$logpath 2>&1
 	    if [ $? == 127 ]
             then
-                lunch $target && make -j $(nproc --all)
+                lunch $buildcombo 1>$logpath 2>&1
+		if [ $? == 0 ]
+		then
+		    make -j $(nproc --all) 1>>$logpath 2>&1
+		fi
             fi
 	    if [ $? == 0 ]
             then
-	        mkdir -p $dstpath && mv out/target/product/$device/*OFFICIAL*.zip  $dstpath/$rom-microg-$device-$(date +'%Y%m%d_%H%M')-UNOFFICIAL.zip
+	        mkdir -p $dstpath && mv out/target/product/$device/*NIGHTLY*.zip  $dstpath/$rom-microg-$timestamp-$device.zip
             fi
             make clean
 	fi
