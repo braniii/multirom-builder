@@ -1,12 +1,10 @@
 #!/bin/bash
 
 TARGETS="
-	lineage-14.1_athene-user
 	lineage-14.1_bacon-user
 	lineage-14.1_cheeseburger-user
 	lineage-14.1_gemini-user
 	lineage-14.1_hammerhead-user
-	lineage-14.1_i9300-user
 	lineage-14.1_kenzo-user
 	lineage-14.1_klte-user
 	lineage-14.1_lux-user

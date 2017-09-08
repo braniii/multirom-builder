@@ -5,7 +5,7 @@
      <string name="export_path" translatable="false">LineageOS updates/</string>
  
 -    <string name="conf_update_server_url_def" translatable="false">https://download.lineageos.org/api</string>
-+    <string name="conf_update_server_url_def" translatable="false">https://microg.me/ota/lineage/api</string>
++    <string name="conf_update_server_url_def" translatable="false">https://microg.me/ota/lineage-14.1/api</string>
  
      <string name="verification_failed_notification">Verification failed</string>
      <string name="verifying_download_notification">Verifying update</string>
