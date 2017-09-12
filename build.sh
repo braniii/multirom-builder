@@ -1,20 +1,30 @@
 #!/bin/bash
 
 TARGETS="
+	lineage-14.1_angler-user
 	lineage-14.1_bacon-user
+	lineage-14.1_bullhead-user
 	lineage-14.1_cheeseburger-user
+	lineage-14.1_deb-user
+	lineage-14.1_dragon-user
+	lineage-14.1_flo-user
 	lineage-14.1_gemini-user
 	lineage-14.1_hammerhead-user
 	lineage-14.1_kenzo-user
 	lineage-14.1_klte-user
 	lineage-14.1_lux-user
+	lineage-14.1_m8-user
+	lineage-14.1_mako-user
+	lineage-14.1_mido-user
 	lineage-14.1_oneplus3-user
 	lineage-14.1_osprey-user
+	lineage-14.1_shamu-user
 	lineage-14.1_titan-user
 	"
 OUTPUT_ROOT="/data/archive"
 BUILD_ROOT="/data/build"
 CCACHE_DIR="$BUILD_ROOT/ccache"
+LOG_DIR=$OUTPUT_ROOT/logs
 
 SCRIPT=$( readlink -m $( type -p $0 ))
 SCRIPT_PATH="$(dirname "$SCRIPT")"
@@ -22,8 +32,11 @@ SCRIPT_PATH="$(dirname "$SCRIPT")"
 USE_CCACHE=1
 CCACHE_SIZE="120G"
 
-
 export CM_BUILDTYPE=NIGHTLY
+
+
+mkdir -p $LOG_DIR
+
 
 function setup_repo {
     ROM=$1
@@ -125,26 +138,35 @@ do
 	    dstpath=$OUTPUT_ROOT/$rom/$device/
 	    timestamp=$(date +'%Y%m%d_%H%M')
 
-	    mkdir -p $OUTPUT_ROOT/logs/
-	    logpath=$OUTPUT_ROOT/logs/$rom-$device-$timestamp.log
+	    logpath=$LOG_DIR/$rom-$device-$timestamp.log
+	    
+	    build_state="FAIL"
+	    build_start=$(date +%s)
 
 	    brunch $buildcombo 1>>$logpath 2>&1
-	    if [ $? == 127 ]
+	    ret=$?
+	    if [ $ret == 127 ]
             then
                 lunch $buildcombo 1>$logpath 2>&1
-		if [ $? == 0 ]
+		ret=$?
+		if [ $ret == 0 ]
 		then
 		    make -j $(nproc --all) 1>>$logpath 2>&1
+		    ret=$?
 		fi
             fi
-	    if [ $? == 0 ]
+	    if [ $ret == 0 ]
             then
 	        mkdir -p $dstpath && mv out/target/product/$device/*NIGHTLY*.zip  $dstpath/$rom-microg-$timestamp-$device.zip
+		build_state="SUCCESS"
             fi
+	    build_time=$(($(date +%s)-build_start))
+
+	    echo "$timestamp|$rom|$device|$build_state|$build_time" >> $LOG_DIR/builder.log
             make clean
 	fi
     done
 done
-rsync -av $OUTPUT_ROOT www-data@microg.me:/data/
+rsync --delete -av $OUTPUT_ROOT www-data@microg.me:/data/
 
 
