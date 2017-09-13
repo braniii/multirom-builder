@@ -41,6 +41,9 @@ CCACHE_SIZE="160G"
 export CM_BUILDTYPE=NIGHTLY
 
 
+# Fix if script is ran by cron
+export USER=$(whoami)
+
 mkdir -p $LOG_DIR
 
 
