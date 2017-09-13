@@ -10,14 +10,20 @@ TARGETS="
 	lineage-14.1_flo-user
 	lineage-14.1_gemini-user
 	lineage-14.1_hammerhead-user
+	lineage-14.1_hlte-user
+	lineage-14.1_i9100-user
+	lineage-14.1_i9300-user
+	lineage-14.1_jfltexx-user
 	lineage-14.1_kenzo-user
 	lineage-14.1_klte-user
 	lineage-14.1_lux-user
 	lineage-14.1_m8-user
 	lineage-14.1_mako-user
 	lineage-14.1_mido-user
+	lineage-14.1_oneplus2-user
 	lineage-14.1_oneplus3-user
 	lineage-14.1_osprey-user
+	lineage-14.1_serranoltexx
 	lineage-14.1_shamu-user
 	lineage-14.1_titan-user
 	"
@@ -30,7 +36,7 @@ SCRIPT=$( readlink -m $( type -p $0 ))
 SCRIPT_PATH="$(dirname "$SCRIPT")"
 
 USE_CCACHE=1
-CCACHE_SIZE="120G"
+CCACHE_SIZE="160G"
 
 export CM_BUILDTYPE=NIGHTLY
 
