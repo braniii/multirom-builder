@@ -5,6 +5,7 @@ TARGETS="
 	lineage-14.1_bacon-user
 	lineage-14.1_bullhead-user
 	lineage-14.1_cheeseburger-user
+	lineage-14.1_condor-user
 	lineage-14.1_deb-user
 	lineage-14.1_dragon-user
 	lineage-14.1_flo-user
@@ -26,6 +27,7 @@ TARGETS="
 	lineage-14.1_serranoltexx
 	lineage-14.1_shamu-user
 	lineage-14.1_titan-user
+	lineage-14.1_wt88047-user
 	"
 OUTPUT_ROOT="/data/archive"
 BUILD_ROOT="/data/build"
