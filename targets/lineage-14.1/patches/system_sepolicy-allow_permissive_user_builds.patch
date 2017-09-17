@@ -1,0 +1,30 @@
+--- a/system/sepolicy/Android.mk
++++ b/system/sepolicy/Android.mk
+@@ -106,13 +106,6 @@ $(LOCAL_BUILT_MODULE): $(sepolicy_policy.conf) $(HOST_OUT_EXECUTABLES)/checkpoli
+ 	$(hide) $(HOST_OUT_EXECUTABLES)/checkpolicy -M -c $(POLICYVERS) -o $@.tmp $<
+ 	$(hide) $(HOST_OUT_EXECUTABLES)/checkpolicy -M -c $(POLICYVERS) -o $(dir $<)/$(notdir $@).dontaudit $<.dontaudit
+ 	$(hide) $(HOST_OUT_EXECUTABLES)/sepolicy-analyze $@.tmp permissive > $@.permissivedomains
+-	$(hide) if [ "$(TARGET_BUILD_VARIANT)" = "user" -a -s $@.permissivedomains ]; then \
+-		echo "==========" 1>&2; \
+-		echo "ERROR: permissive domains not allowed in user builds" 1>&2; \
+-		echo "List of invalid domains:" 1>&2; \
+-		cat $@.permissivedomains 1>&2; \
+-		exit 1; \
+-		fi
+ 	$(hide) mv $@.tmp $@
+ 
+ built_sepolicy := $(LOCAL_BUILT_MODULE)
+@@ -144,13 +137,6 @@ $(LOCAL_BUILT_MODULE): $(sepolicy_policy_recovery.conf) $(HOST_OUT_EXECUTABLES)/
+ 	@mkdir -p $(dir $@)
+ 	$(hide) $(HOST_OUT_EXECUTABLES)/checkpolicy -M -c $(POLICYVERS) -o $@.tmp $<
+ 	$(hide) $(HOST_OUT_EXECUTABLES)/sepolicy-analyze $@.tmp permissive > $@.permissivedomains
+-	$(hide) if [ "$(TARGET_BUILD_VARIANT)" = "user" -a -s $@.permissivedomains ]; then \
+-		echo "==========" 1>&2; \
+-		echo "ERROR: permissive domains not allowed in user builds" 1>&2; \
+-		echo "List of invalid domains:" 1>&2; \
+-		cat $@.permissivedomains 1>&2; \
+-		exit 1; \
+-		fi
+ 	$(hide) mv $@.tmp $@
+ 
+ built_sepolicy_recovery := $(LOCAL_BUILT_MODULE)
