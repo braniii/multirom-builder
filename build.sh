@@ -175,9 +175,9 @@ do
 
 	    echo "$timestamp|$rom|$device|$build_state|$build_time" >> $LOG_DIR/builder.log
             make clean
+            rsync --delete -av $OUTPUT_ROOT www-data@microg.me:/data/
 	fi
     done
 done
-rsync --delete -av $OUTPUT_ROOT www-data@microg.me:/data/
 
 
