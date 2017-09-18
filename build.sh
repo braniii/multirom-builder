@@ -1,33 +1,33 @@
 #!/bin/bash
 
 TARGETS="
-	lineage-14.1_angler-user
-	lineage-14.1_bacon-user
-	lineage-14.1_bullhead-user
-	lineage-14.1_cheeseburger-user
-	lineage-14.1_condor-user
-	lineage-14.1_deb-user
-	lineage-14.1_dragon-user
-	lineage-14.1_flo-user
-	lineage-14.1_gemini-user
-	lineage-14.1_hammerhead-user
-	lineage-14.1_hlte-user
-	lineage-14.1_i9100-user
-	lineage-14.1_i9300-user
-	lineage-14.1_jfltexx-user
-	lineage-14.1_kenzo-user
-	lineage-14.1_klte-user
-	lineage-14.1_lux-user
-	lineage-14.1_m8-user
-	lineage-14.1_mako-user
-	lineage-14.1_mido-user
-	lineage-14.1_oneplus2-user
-	lineage-14.1_oneplus3-user
-	lineage-14.1_osprey-user
-	lineage-14.1_serranoltexx
-	lineage-14.1_shamu-user
-	lineage-14.1_titan-user
-	lineage-14.1_wt88047-user
+	lineage-14.1_angler-userdebug
+	lineage-14.1_bacon-userdebug
+	lineage-14.1_bullhead-userdebug
+	lineage-14.1_cheeseburger-userdebug
+	lineage-14.1_condor-userdebug
+	lineage-14.1_deb-userdebug
+	lineage-14.1_dragon-userdebug
+	lineage-14.1_flo-userdebug
+	lineage-14.1_gemini-userdebug
+	lineage-14.1_hammerhead-userdebug
+	lineage-14.1_hlte-userdebug
+	lineage-14.1_i9100-userdebug
+	lineage-14.1_i9300-userdebug
+	lineage-14.1_jfltexx-userdebug
+	lineage-14.1_kenzo-userdebug
+	lineage-14.1_klte-userdebug
+	lineage-14.1_lux-userdebug
+	lineage-14.1_m8-userdebug
+	lineage-14.1_mako-userdebug
+	lineage-14.1_mido-userdebug
+	lineage-14.1_oneplus2-userdebug
+	lineage-14.1_oneplus3-userdebug
+	lineage-14.1_osprey-userdebug
+	lineage-14.1_serranoltexx-userdebug
+	lineage-14.1_shamu-userdebug
+	lineage-14.1_titan-userdebug
+	lineage-14.1_wt88047-userdebug
 	"
 OUTPUT_ROOT="/data/archive"
 BUILD_ROOT="/data/build"
