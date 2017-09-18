@@ -1,0 +1,18 @@
+--- a/packages/apps/Settings/src/com/android/settings/DevelopmentSettings.java
++++ b/packages/apps/Settings/src/com/android/settings/DevelopmentSettings.java
+@@ -560,7 +560,6 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
+         mRootAppops = (Preference) findPreference(ROOT_APPOPS_KEY);
+         mRootAppops.setOnPreferenceClickListener(this);
+ 
+-        if (!removeRootOptionsIfRequired()) {
+             if (FileUtils.fileExists("/system/xbin/su")) {
+                 mRootAccess.setEntries(R.array.root_access_entries);
+                 mRootAccess.setEntryValues(R.array.root_access_values);
+@@ -570,7 +569,6 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
+             }
+             mAllPrefs.add(mRootAccess);
+             mAllPrefs.add(mRootAppops);
+-        }
+ 
+         mUpdateRecoveryPreference = findAndInitSwitchPref("update_recovery");
+         if (!getResources().getBoolean(R.bool.config_enableRecoveryUpdater)) {
