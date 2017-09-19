@@ -6,6 +6,7 @@ TARGETS="
 	lineage-14.1_bullhead-userdebug
 	lineage-14.1_cheeseburger-userdebug
 	lineage-14.1_condor-userdebug
+	lineage-14.1_d855-userdebug
 	lineage-14.1_deb-userdebug
 	lineage-14.1_dragon-userdebug
 	lineage-14.1_flo-userdebug
