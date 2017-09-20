@@ -1,0 +1,32 @@
+--- a/packages/apps/SetupWizard/src/com/cyanogenmod/setupwizard/LineageSettingsActivity.java
++++ b/packages/apps/SetupWizard/src/com/cyanogenmod/setupwizard/LineageSettingsActivity.java
+@@ -23,6 +23,7 @@ import static com.cyanogenmod.setupwizard.SetupWizardApp.KEY_PRIVACY_GUARD;
+ import static com.cyanogenmod.setupwizard.SetupWizardApp.KEY_SEND_METRICS;
+ 
+ import android.app.Activity;
++import android.content.ComponentName;
+ import android.content.Context;
+ import android.content.Intent;
+ import android.net.Uri;
+@@ -57,6 +58,7 @@ public class LineageSettingsActivity extends BaseSetupWizardActivity {
+ 
+     private SetupWizardApp mSetupWizardApp;
+ 
++    private boolean isMicrogAsked = false;
+     private View mMetricsRow;
+     private View mNavKeysRow;
+     private View mPrivacyGuardRow;
+@@ -157,6 +159,13 @@ public class LineageSettingsActivity extends BaseSetupWizardActivity {
+         mPrivacyGuard = (CheckBox) findViewById(R.id.privacy_guard_checkbox);
+         mPrivacyGuard.setChecked(CMSettings.Secure.getInt(getContentResolver(),
+                 CMSettings.Secure.PRIVACY_GUARD_DEFAULT, 0) == 1);
++        if(!isMicrogAsked) {
++	   isMicrogAsked = true;
++           Intent i = new Intent(Intent.ACTION_VIEW);
++           i.setComponent(ComponentName.unflattenFromString("org.fdroid.fdroid/org.fdroid.fdroid.views.ManageReposActivity"));
++           i.setData(Uri.parse("https://microg.org/fdroid/repo?fingerprint=9BD06727E62796C0130EB6DAB39B73157451582CBD138E86C468ACC395D14165"));
++           startActivity(i);
++       }
+     }
+ 
+     @Override
