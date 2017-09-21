@@ -25,6 +25,7 @@ TARGETS="
 	lineage-14.1_oneplus2-userdebug
 	lineage-14.1_oneplus3-userdebug
 	lineage-14.1_osprey-userdebug
+	lineage-14.1_pme-userdebug
 	lineage-14.1_serranoltexx-userdebug
 	lineage-14.1_shamu-userdebug
 	lineage-14.1_titan-userdebug
