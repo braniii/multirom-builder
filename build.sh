@@ -2,6 +2,7 @@
 
 TARGETS="
 	lineage-14.1_angler-userdebug
+	lineage-14.1_armani-userdebug
 	lineage-14.1_bacon-userdebug
 	lineage-14.1_bullhead-userdebug
 	lineage-14.1_cheeseburger-userdebug
