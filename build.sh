@@ -5,6 +5,7 @@ TARGETS="
 	lineage-14.1_armani-userdebug
 	lineage-14.1_bacon-userdebug
 	lineage-14.1_bullhead-userdebug
+	lineage-14.1_cancro-userdebug
 	lineage-14.1_cheeseburger-userdebug
 	lineage-14.1_condor-userdebug
 	lineage-14.1_d855-userdebug
