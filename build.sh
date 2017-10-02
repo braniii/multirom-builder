@@ -173,6 +173,7 @@ do
 	    if [ $ret == 0 ]
             then
 	        mkdir -p $dstpath && mv out/target/product/$device/*NIGHTLY*.zip  $dstpath/$rom-microg-$timestamp-$device.zip
+	        md5sum $dstpath/$rom-microg-$timestamp-$device.zip > $dstpath/$rom-microg-$timestamp-$device.zip.md5sum
 		build_state="SUCCESS"
             fi
 	    build_time=$(($(date +%s)-build_start))
